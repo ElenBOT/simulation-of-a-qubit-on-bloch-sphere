@@ -2,10 +2,7 @@
 
 In this python file, five examples are given, let code speaks for itself.
 """
-
 import blochsimu as bs
-from matplotlib import pyplot as plt
-import numpy as np
 
 phy_args = {
     'u0': (0.0, 0.0, 1.0),
