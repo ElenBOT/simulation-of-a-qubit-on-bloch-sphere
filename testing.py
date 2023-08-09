@@ -31,7 +31,7 @@ G2 = Gp + G1/2
 expe = bs.ExpScheme(**phy_args)
 expe.sequence = (
     bs.Section(2, I=1.58), # pi pluse of I
-    bs.Section(3, d=0, G1=G1, G2=0) # wait for qubit drops back to ground state.
+    bs.Section(3, d=0, G1=G1, G2=G2) # wait for qubit drops back to ground state.
 )
 u_sol1, u_sol_section1 = bs.blochsolve(expe, dt)
 bs.blochdrawer.plot(u_sol1, block=True)
