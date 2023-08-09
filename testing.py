@@ -1,7 +1,3 @@
-"""Examples of how you can use blochsimu.
-
-In this python file, five examples are given, let code speaks for itself.
-"""
 import blochsimu as bs
 
 dt = 5e-4 # sampling time for numerical integral
