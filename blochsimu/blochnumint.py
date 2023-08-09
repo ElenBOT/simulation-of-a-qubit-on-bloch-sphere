@@ -26,19 +26,19 @@ blochsolve
 import numpy as np
 from scipy.integrate import odeint
 from .expscheme import Section, ExpScheme
-from typing import Callable
+from typing import Callable, Tuple
 __all__ = [
     'blochsolve'
 ]
 
 def _dudt(u: tuple,
           t: float,
-          I_in: Callable[[float], float] | float,
-          Q_in: Callable[[float], float] | float,
-          d_in: Callable[[float], float] | float,
-          z0_in: Callable[[float], float] | float,
-          G1_in: Callable[[float], float] | float,
-          G2_in: Callable[[float], float] | float) -> tuple[float]: 
+          I_in: Callable[[float], float] or float,
+          Q_in: Callable[[float], float] or float,
+          d_in: Callable[[float], float] or float,
+          z0_in: Callable[[float], float] or float,
+          G1_in: Callable[[float], float] or float,
+          G2_in: Callable[[float], float] or float) -> Tuple[float]: 
     '''
     A function used as an argument for scipy.integrate.odeint.
 
@@ -120,7 +120,7 @@ def _numint_section(u0: float, duration: float,
     u_sol = u_sol.T
     return u_sol
 
-def blochsolve(expe: ExpScheme, dt: float) -> tuple[np.ndarray]:
+def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
     '''
     Solve a given experiment scheme.
 

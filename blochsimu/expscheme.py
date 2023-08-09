@@ -19,7 +19,7 @@ ExpScheme
 """
 import numpy as np
 import numbers
-from typing import Callable
+from typing import Callable, Tuple, List
 from matplotlib import pyplot as plt
 __all__ = [
     'Section', 
@@ -107,13 +107,13 @@ class ExpScheme:
 
     def __init__(self, 
                  *,
-                 u0: tuple[float] | list[float],
-                 z0: Callable[[float], float] | float,
-                 I: Callable[[float], float] | float,
-                 Q: Callable[[float], float] | float,
-                 d: Callable[[float], float] | float,
-                 G1: Callable[[float], float] | float,
-                 G2: Callable[[float], float] | float) -> None:
+                 u0: Tuple[float] or List[float],
+                 z0: Callable[[float], float] or float,
+                 I: Callable[[float], float] or float,
+                 Q: Callable[[float], float] or float,
+                 d: Callable[[float], float] or float,
+                 G1: Callable[[float], float] or float,
+                 G2: Callable[[float], float] or float) -> None:
         """Set up an experiment scheme with default physical arguments.
         
         Keyword Arguments
@@ -204,7 +204,7 @@ class ExpScheme:
     def sequence(self):
         return self._sequence
     @sequence.setter
-    def sequence(self, sections: tuple[Section] | list[Section]):
+    def sequence(self, sections: Tuple[Section] or List[Section]):
         """For each section, regist them to belong to this experiment scheme."""
         for section in sections :
             if not isinstance(section, Section):
