@@ -135,7 +135,7 @@ class BlochSphereDarwer:
             Block the program untill the figure is closed.
         """
         self.fig, self.ax = draw_bloch_sphere('Qubit on bloch equation (plot)')
-        self.ax.plot(*u, linewidth=3)
+        self.ax.plot(*u, linewidth=5)
         self.ax.plot(*u[:, -1], 'ro')
         if sepe_N: self.ax.plot(*u[:, ::sepe_N], 'b o')
         if show: plt.show(block=block)
