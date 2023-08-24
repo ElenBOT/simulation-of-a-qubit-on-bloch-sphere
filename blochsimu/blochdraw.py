@@ -119,7 +119,7 @@ class BlochSphereDarwer:
 
         Arguments
         ----------
-        u : numpy.ndarray with shape (3, N)
+        u : numpy.ndarray with shape (4, N)
             The points to be plot.
 
         Keyword Arguments
@@ -134,6 +134,13 @@ class BlochSphereDarwer:
         block : bool, optional (default is True)
             Block the program untill the figure is closed.
         """
+        if type(u) is not np.ndarray:
+            raise TypeError(
+                f'The input for u is not numpy.ndarray') from None
+        if not u.shape[0] == 4:
+            raise TypeError(
+                f'The shape of u is {u.shape}, it should be (4, N)') from None
+        u = u[1:4, :]
         self.fig, self.ax = draw_bloch_sphere('Qubit on bloch equation (plot)')
         self.ax.plot(*u, linewidth=5)
         self.ax.plot(*u[:, -1], 'ro')
@@ -145,7 +152,7 @@ class BlochSphereDarwer:
         
         Arguments
         ----------
-        u : numpy.ndarray with shape (3, N)
+        u : numpy.ndarray with shape (4, N)
             The points to be animate.
         t_interval : float
             The time interval between each fram of the animation, in seconds.
@@ -153,13 +160,11 @@ class BlochSphereDarwer:
         if type(u) is not np.ndarray:
             raise TypeError(
                 f'The input for u is not numpy.ndarray') from None
-        if not u.shape[0] == 3:
+        if not u.shape[0] == 4:
             raise TypeError(
-                f'The shape of u is {u.shape}, it should be (3, N)') from None
+                f'The shape of u is {u.shape}, it should be (4, N)') from None
+        u = u[1:4, :]
         
-        #u_padding = u.T[-1].reshape(3, 1) * np.ones([3, int(2/t_interval)])
-        #u = np.hstack( (u, u_padding) )
-
         self.fig, self.ax = draw_bloch_sphere('Qubit on bloch equation (animation)')
         t_interval = t_interval * 1000 # s --> ms
         

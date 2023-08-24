@@ -109,15 +109,16 @@ def _numint_section(u0: float, duration: float,
 
     Returns 
     ----------
-    u_sol : numpy.ndarray with shape (3, sam_num)
+    u_sol : numpy.ndarray with shape (4, sam_num)
         The result of numerical integral.
-        u_sol[0, n] is the x-component of n-th sampling time,
-        u_sol[1, n] is the y-component of n-th sampling time,
-        u_sol[2, n] is the z-component of n-th sampling time.
+        u_sol[0, n] is the n-th sampling time,
+        u_sol[1, n] is the x-component of n-th sampling time,
+        u_sol[2, n] is the y-component of n-th sampling time,
+        u_sol[3, n] is the z-component of n-th sampling time.
     '''
     samt = np.linspace(0, duration, sam_num)
     u_sol = odeint(_dudt, u0, samt, args = args)
-    u_sol = u_sol.T
+    u_sol = np.vstack([samt.reshape(1, -1), u_sol.T])
     return u_sol
 
 def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
@@ -133,11 +134,12 @@ def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
 
     Returns
     ----------
-    u_sol : numpy.ndarray with shape (3, N)
+    u_sol : numpy.ndarray with shape (4, N)
         The complete numerical solution of u(t) under the experiment setup.
-        u_sol[0, n] is the x-component of n-th sampling time,
-        u_sol[1, n] is the y-component of n-th sampling time,
-        u_sol[2, n] is the z-component of n-th sampling time.
+        u_sol[0, n] is the n-th sampling time,
+        u_sol[1, n] is the x-component of n-th sampling time,
+        u_sol[2, n] is the y-component of n-th sampling time,
+        u_sol[3, n] is the z-component of n-th sampling time.
     u_sol_sections : list
         A list contains numerical solutions of u(t) for each section in
         the experiment sheme. Each element in the list has the discription
@@ -150,7 +152,7 @@ def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
         if len(u_sol_sofar) == 0:
             u_start = expe.u0
         else:
-            u_start = u_sol_sofar[-1].T[-1]
+            u_start = u_sol_sofar[-1].T[-1, 1:4]
         sam_num = int(section.s / dt)
         args = (
             section.phy_args['I'],
