@@ -1,7 +1,7 @@
 import blochsimu as bs
 from matplotlib import pyplot as plt
 import numpy as np
-dt = 5e-10 # sampling time for numerical integral
+
 
 # d  / x \   / -G2  -d   I\ / x \   /   0   \ 
 #----| y | = |  d  -G2  -Q| | y | + |   0   |
@@ -18,15 +18,16 @@ phy_args = {
     'G1': G1,
     'G2': G2,
 }
-d = 2e+6
+d = 4e+6
 option = (
     'once',
     'time domain'
 )[0]
+dt = 1e-8 # sampling time for numerical integral
 if option == 'once':
     expe = bs.ExpScheme(**phy_args)
     expe.sequence = (
-    bs.Section(s=40e-6, I=5e+4, d = d),
+    bs.Section(s=5e-6, I=8e+6, d = d),
     )
     u_sol, u_sol_section = bs.blochsolve(expe, dt)
     bs.blochdrawer.plot(u_sol, block=False)
@@ -52,5 +53,4 @@ if option == 'time domain':
     bs.blochdrawer.plot(u_sol, show=False)
     bs.blochdrawer.ax.view_init(elev=30, azim=45)
     plt.show(block = False)
-    z = u_sol[2, :]
 
