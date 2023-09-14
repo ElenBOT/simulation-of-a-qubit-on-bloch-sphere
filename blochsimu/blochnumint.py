@@ -92,7 +92,8 @@ def _dudt(u: tuple,
     return dudt
 
 def _numint_section(u0: float, duration: float, 
-                    args: tuple, sam_num: int) -> np.ndarray:
+                    args: tuple, sam_num: int,
+                    t0: float = 0) -> np.ndarray:
     '''
     perform numerical integral of bloch equation.
 
@@ -118,7 +119,7 @@ def _numint_section(u0: float, duration: float,
     '''
     samt = np.linspace(0, duration, sam_num)
     u_sol = odeint(_dudt, u0, samt, args = args)
-    u_sol = np.vstack([samt.reshape(1, -1), u_sol.T])
+    u_sol = np.vstack([t0 + samt.reshape(1, -1), u_sol.T])
     return u_sol
 
 def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
@@ -148,7 +149,6 @@ def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
     u_sol_sofar = []
     t_sofar = 0
     for section in expe.sequence:
-        t_sofar += section.s
         if len(u_sol_sofar) == 0:
             u_start = expe.u0
         else:
@@ -163,9 +163,10 @@ def blochsolve(expe: ExpScheme, dt: float) -> Tuple[np.ndarray]:
             section.phy_args['G2'],
         )
         u_sol_section = _numint_section(
-            u_start, section.s, args, sam_num)
+            u_start, section.s, args, sam_num, t_sofar)
         u_sol_sofar.append(u_sol_section)
-    
+        t_sofar += section.s
+        
     u_sol_sections = tuple(u_sol_section for u_sol_section in u_sol_sofar)
     u_sol = np.hstack(u_sol_sofar)
     return u_sol, u_sol_sections
