@@ -15,7 +15,7 @@ maintainers = [
 ]
 description = "Simulate and plot the behavior of a qubit on bloch sphere"
 readme = "readme.md"
-requires-python = ">=3.0"
+requires-python = ">=3.7"
 dependencies = [
     "numpy",
     "scipy",
