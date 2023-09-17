@@ -7,11 +7,11 @@ name = "pypackage_test"
 version = "0.0.1"
 license = {file = "LICENSE"}
 authors = [
-  { name="ElenBOT" },
+  { name="ElenBOT", email="elen98725@gmail.com"},
   { name="Patrick Liu", email="32678320+patrick-csliu@users.noreply.github.com"}
 ]
 maintainers = [
-  { name="ElenBOT" },
+  { name="ElenBOT", email="elen98725@gmail.com"},
 ]
 description = "Simulate and plot the behavior of a qubit on bloch sphere"
 readme = "readme.md"
