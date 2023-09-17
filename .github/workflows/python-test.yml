@@ -67,7 +67,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if exist test_requirements.txt pip install -r test_requirements.txt
+        if (Test-Path -Path "test_requirements.txt" -PathType Leaf) {
+            pip install -r .\test_requirements.txt
+        }
     - name: Test
       run: |
         python testing.py
