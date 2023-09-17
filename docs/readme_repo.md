@@ -1,7 +1,7 @@
 # blochsimu - a python module for qubit simulation
 `blochsimu` is a light weight python module that provide easy ways to simulate and plot the behavior of a qubit on bloch sphere.
 
-{{insert_point.badges}}
+<a href="https://pypi.org/project/<package-name>"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/<package-name>"></a>
 
 ## Requirements
 * python 3+
@@ -23,9 +23,9 @@
     pip install <package-name>
     ```
 
-1. Download the latest release from {{insert_pont.github_release}}
+1. Download the latest release from {{insert_point.github_release}}
     ```shell
-    pip install <package-name>-{{insert_pont.version}}.tar.gz
+    pip install <package-name>-{{insert_point.version}}.tar.gz
 
     ```
 

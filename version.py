@@ -8,6 +8,30 @@ _COMMENT = """#
 #
 """
 
+_CHANGELOG_TEMPLATE = """# Title
+* line1
+* line2
+* line3
+"""
+
+INSERT_POINTS = [
+    'github_release',
+    'version',
+]
+
+class Insert:
+    """Replace file content"""
+    def __init__(self, file_text):
+        self.file = file_text
+    def insert_content(self, insert_point, content):
+        """Insert the content to insert point"""
+        full_point = f'{{{{insert_point.{insert_point}}}}}'
+        self.file.replace(full_point, content)
+    def get_file_text(self):
+        """return file text"""
+        return self.file
+
+
 if __name__ == '__main__':
     import sys
     import toml
@@ -33,5 +57,18 @@ if __name__ == '__main__':
     # check change log
     filepath = f"./docs/changelogs/changelog_{version}.md"
     if not exists(filepath):
-        open(filepath, 'x', encoding='utf-8').close()
+        with open(filepath, 'x', encoding='utf-8') as f:
+            f.write(_CHANGELOG_TEMPLATE)
     print(filepath)
+
+    # Create readme.md
+    with open("docs/readme_repo.md", "r", encoding='utf-8') as f:
+        file_obj = Insert(f.read())
+    # point 0
+    content_p0 = f"[Release {version}](https://github.com/ElenBOT/simulation-of-a-qubit-on-bloch-sphere/releases/tag/{version})"
+    file_obj.insert_content(INSERT_POINTS[0], content_p0)
+    # point 1
+    content_p1 = f"{version}"
+    file_obj.insert_content(INSERT_POINTS[1], content_p1)
+    with open("README.md", "w", encoding='utf-8') as f:
+        f.write(file_obj.get_file_text())
