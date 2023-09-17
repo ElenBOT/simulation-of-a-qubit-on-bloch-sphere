@@ -26,7 +26,6 @@
 1. Download the latest release from {{insert_point.github_release}}
     ```shell
     pip install <package-name>-{{insert_point.version}}.tar.gz
-
     ```
 
 ## Usage

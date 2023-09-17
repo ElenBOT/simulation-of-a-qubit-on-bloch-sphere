@@ -22,20 +22,21 @@ INSERT_POINTS = [
 class Insert:
     """Replace file content"""
     def __init__(self, file_text):
-        self.file = file_text
+        self.text = file_text
     def insert_content(self, insert_point, content):
         """Insert the content to insert point"""
         full_point = f'{{{{insert_point.{insert_point}}}}}'
-        self.file.replace(full_point, content)
+        self.text = self.text.replace(full_point, content)
     def get_file_text(self):
         """return file text"""
-        return self.file
+        return self.text
 
 
 if __name__ == '__main__':
     import sys
     import toml
     from os.path import exists
+    from os import mkdir
 
     # get tags from parse as version
     if len(sys.argv) < 2:
@@ -55,7 +56,10 @@ if __name__ == '__main__':
         f.write(_COMMENT + '\n' + file_content)
 
     # check change log
-    filepath = f"./docs/changelogs/changelog_{version}.md"
+    logdir = "./docs/changelogs"
+    filepath = f"{logdir}/changelog_{version}.md"
+    if not exists(logdir):
+        mkdir(logdir)
     if not exists(filepath):
         with open(filepath, 'x', encoding='utf-8') as f:
             f.write(_CHANGELOG_TEMPLATE)
