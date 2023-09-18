@@ -4,7 +4,7 @@
 <a href="https://pypi.org/project/<package-name>"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/<package-name>"></a>
 
 ## Requirements
-* python 3+
+* python 3.7+
 * numpy
 * scipy
 * matplotlib
