@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blochsimu"
+version = "v0.0.1"
+license = {file = "LICENSE"}
+authors = [
+  { name="ElenBOT", email="elen98725@gmail.com"},
+  { name="Patrick Liu", email="32678320+patrick-csliu@users.noreply.github.com"}
+]
+maintainers = [
+  { name="ElenBOT", email="elen98725@gmail.com"},
+]
+description = "Simulate and plot the behavior of a qubit on bloch sphere"
+readme = "readme.md"
+requires-python = ">=3.7"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Operating System :: OS Independent",
+    # License
+]
+
+[project.urls]
+Homepage = "https://github.com/ElenBOT/simulation-of-a-qubit-on-bloch-sphere"
+"Bug Tracker" = "https://github.com/ElenBOT/simulation-of-a-qubit-on-bloch-sphere/issues"
+Repository = "https://github.com/ElenBOT/simulation-of-a-qubit-on-bloch-sphere.git"
+# Documentation = "" # No doc currently
+# Changelog = "" # No change log currently
