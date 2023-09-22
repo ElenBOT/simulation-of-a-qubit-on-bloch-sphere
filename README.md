@@ -20,20 +20,12 @@
 
 1. Install from PyPI
     ```shell
-<<<<<<< HEAD
-    pip install blochsimu
-=======
     pip install <package-name>
->>>>>>> main
     ```
 
-1. Download the latest release from {{insert_point.github_release}}
+1. Download the latest release from [Release v0.0.1](https://github.com/ElenBOT/simulation-of-a-qubit-on-bloch-sphere/releases/tag/v0.0.1)
     ```shell
-<<<<<<< HEAD
-    pip install blochsimu-{{insert_point.version}}.tar.gz
-=======
-    pip install <package-name>-{{insert_point.version}}.tar.gz
->>>>>>> main
+    pip install <package-name>-v0.0.1.tar.gz
     ```
 
 ## Usage
