@@ -20,12 +20,12 @@
 
 1. Install from PyPI
     ```shell
-    pip install <package-name>
+    pip install blochsimu
     ```
 
 1. Download the latest release from {{insert_point.github_release}}
     ```shell
-    pip install <package-name>-{{insert_point.version}}.tar.gz
+    pip install blochsimu-{{insert_point.version}}.tar.gz
     ```
 
 ## Usage
