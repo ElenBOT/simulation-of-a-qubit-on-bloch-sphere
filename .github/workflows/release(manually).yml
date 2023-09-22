@@ -48,7 +48,7 @@ jobs:
           git config --global user.name "Auto commit (Github release workflow)"
           git config --global user.email "elen98725@gmail.com"
           git add .
-          git commit -m "commit by auto commit"
+          git commit -m "commit by auto commit (Github release workflow)"
         fi
         git tag $VERSION
         git push origin $VERSION main

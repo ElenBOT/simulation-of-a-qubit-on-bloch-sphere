@@ -47,7 +47,7 @@ if __name__ == '__main__':
             f.write(_CHANGELOG_TEMPLATE)
 
     # Create readme.md
-    with open("docs/readme_repo.md", "r", encoding='utf-8') as f:
+    with open("docs/README_repo.md", "r", encoding='utf-8') as f:
         file_obj = Insert(f.read())
     # point 0
     content_p0 = f"[Release {version}](https://github.com/ElenBOT/simulation-of-a-qubit-on-bloch-sphere/releases/tag/{version})"
